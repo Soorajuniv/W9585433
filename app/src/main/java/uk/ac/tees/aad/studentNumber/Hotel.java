@@ -1,37 +1,92 @@
 package uk.ac.tees.aad.studentNumber;
 
-public class Hotel {
-    private String name;
-    private String address;
+import java.io.Serializable;
+
+public class Hotel implements Serializable {
+    private String hotelName;
+    private String location;
     private String rating;
-    private String pricePerNight;
-    private int imageResource;
+    private int price;
+    private double longitude;
+    private double latitude;
+    private int id;
+    private String desc;
 
-    public Hotel(String name, String address, String rating, String pricePerNight, int imageResource) {
-        this.name = name;
-        this.address = address;
+
+    public Hotel(String hotelName, String location, String rating, int price, double longitude,
+                 double latitude, int id, String desc) {
+        this.hotelName = hotelName;
+        this.location = location;
         this.rating = rating;
-        this.pricePerNight = pricePerNight;
-        this.imageResource = imageResource;
+        this.price = price;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.id = id;
+        this.desc = desc;
     }
 
-    public String getName() {
-        return name;
+    public String getHotelName() {
+        return hotelName;
     }
 
-    public String getAddress() {
-        return address;
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getRating() {
         return rating;
     }
 
-    public String getPricePerNight() {
-        return pricePerNight;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
-    public int getImageResource() {
-        return imageResource;
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

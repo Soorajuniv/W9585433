@@ -36,20 +36,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private ActionBar actionBar;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    String API_KEY="EdyUycAcjqv2nYua4GPAHHBnAVzVV56t";
-    String API_Secret="4xWCpddwLf39KMkd";
-    String access_token="";
 //    Geocoder
 
     @Override
@@ -82,9 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()) {
                     case R.id.nav_settings:
-                        getData();
+//                        getData();
                         // TODO: Handle settings action
 //                        startActivity(new Intent(MainActivity.this,Login.class));
+                        startActivity(new Intent(MainActivity.this, MapsActivity.class));
                         return true;
                     case R.id.nav_logout:
                         FirebaseAuth.getInstance().signOut();
@@ -116,41 +115,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void getData(){
-        String url = "https://api.jsonbin.io/v3/b/6405bc9bc0e7653a05833b0b/latest";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject object = new JSONObject(response);
-
-//                            result[0] =object.getJSONArray("data");
-//                            Log.d("data", result[0].toString());
-                            Toast.makeText(getApplicationContext()," "+object.getJSONArray(object.getString("record"))+object.getString("record"),Toast.LENGTH_LONG).show();
-                        } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle error
-
-                Toast.makeText(getApplicationContext(),error.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("X-Master-key", "$2b$10$7LZjZd8jOiBTb.mv6sJGU.Zu/OlGk8FX7rHaOUAdOB/PA3UCBkwp6");
-                return headers;
-            }
-        };
-        // Add the request to the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        queue.add(stringRequest);
-    }
 
 }
